@@ -1,0 +1,33 @@
+.filter-btn:hover,
+.filter-btn:active {
+    background-color: #6f9aff !important;
+    border-color: #6f9aff !important;
+    color: #ffffff !important;
+} 
+
+.filter-btn {
+    transition: all  0.2s ease-in-out;
+}
+
+
+.news-item .card-img {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-item .card .position-relative:first-child {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.news-item .card:hover img {
+    transform: scale(1.05);
+}
+
+.news-item .card .card-title a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.news-item .card:hover .card-title a {
+    text-decoration: underline;
+}

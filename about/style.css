@@ -1,0 +1,21 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* Memberikan latar belakang gelap pada body agar jika gambar lambat dimuat, teks putih tetap terbaca */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0f17;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+.about-banner {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 250px;
+    margin-top: 70px;
+}

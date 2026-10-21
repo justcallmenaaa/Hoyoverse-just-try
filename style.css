@@ -1,0 +1,194 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* Memberikan latar belakang gelap pada body agar jika gambar lambat dimuat, teks putih tetap terbaca */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0f17;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Pengaturan Latar Belakang Utama */
+#hero-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0d0f17; /* Lapis cadangan warna gelap */
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* Lapisan Gelap Transparan di Atas Gambar agar Teks Lebih Mudah Dibaca */
+#hero-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* Styling Thumbnail Bawah */
+.thumb-item {
+    width: 90px;
+    height: 55px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.6;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    background-color: #1a1d28;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb-item:hover,
+.thumb-item.active {
+    opacity: 1;
+    border-color: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.news-card {
+    height: 320px;
+    cursor: pointer;
+}
+
+.card-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3 ease;
+}
+
+.news-card:hover .card-bg {
+    transform: scale(1.05);
+}
+
+.card-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9)0%, rgba(0, 0, 0, 0.4)60%, transparent 100%);
+}
+
+@keyframes zoomOutAnimation {
+    0% { transform: scale(1); opacity: 1; }
+    100% {transform: scale(0); opacity: 0;}
+}
+
+.apalah  {
+     animation-name: zoomOutAnimation;
+     animation-duration: 1.5s;
+     animation-timing-function: ease-in-out;
+     animation-direction: reverse;
+     animation-fill-mode: both;
+}
+
+
+.footer-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    min-height: 180px;
+    transition: all 0.3 ease-in-out;
+    height: 220px;
+    background-color: #0d110a;
+}
+
+/* kondisi kondisi gambar awal */
+.footer-card .footer-bg {
+    opacity: 10;
+    object-fit: cover;
+    z-index: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* kondisi awal overlay */
+.card-overlay {
+    background: linear-gradient(to top, rgba(0 rgba(0, 0, 0, 0.85)10%, rgba(0, 0, 0, 0.4)60%, transparent 100%));
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4 ease-in-out;
+}
+
+/* kursor ke card */
+.footer-card:hover .card-overlay {
+    opacity: 1;
+}
+
+/* overlay muncul */
+.footer-card:hover {
+    border-color: rgba(255, 255, 255, 0.03);
+}
+
+
+.footer-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Container Utama Marquee */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+/* Jalur Umum */
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+}
+
+/* Ukuran Kotak Foto */
+.marquee-item {
+  width: 320px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+/* Baris 1: Bergerak ke Kiri */
+.marquee-left {
+  animation: scrollLeft 25s linear infinite;
+}
+
+/* Baris 2: Bergerak ke Kanan */
+.marquee-right {
+  animation: scrollRight 25s linear infinite;
+}
+
+/* Efek Pause Saat Kursor di atas Marquee */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Keyframe untuk Geser ke Kiri */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+/* Keyframe untuk Geser ke Kanan */
+@keyframes scrollRight {
+  0% {
+    transform: translateX(calc(-50% - 10px));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
