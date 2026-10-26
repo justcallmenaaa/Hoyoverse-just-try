@@ -2,7 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Memberikan latar belakang gelap pada body agar jika gambar lambat dimuat, teks putih tetap terbaca */
 body {
     margin: 0;
     padding: 0;
@@ -12,25 +11,77 @@ body {
     overflow-x: hidden;
 }
 
-/* Pengaturan Latar Belakang Utama */
+/* Pengaturan Hero Background & Slider */
 #hero-bg {
+    position: relative;
+    overflow: hidden;
+    background-color: #0d0f17;
+}
+
+#hero-slider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Efek transisi geser horizontal yang mulus */
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 0;
+}
+
+.slide-item {
+    min-width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #0d0f17; /* Lapis cadangan warna gelap */
-    transition: background-image 0.5s ease-in-out;
 }
 
-/* Lapisan Gelap Transparan di Atas Gambar agar Teks Lebih Mudah Dibaca */
-#hero-bg::before {
-    content: "";
+.overlay-hero {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    z-index: 0;
+    z-index: 1;
+}
+
+/* Transisi halus untuk konten teks */
+#hero-content {
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#hero-content.text-out {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+/* Styling Thumbnail di Bawah (Opsional, pastikan ukurannya sesuai) */
+.thumb-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 80px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb-item.active {
+    border-color: #ffffff;
+    transform: scale(1.05);
 }
 
 /* Styling Thumbnail Bawah */

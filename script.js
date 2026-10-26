@@ -1,4 +1,3 @@
-// Link gambar diganti menggunakan wallpaper langsung beresolusi tinggi (bukan Google Encrypted Thumbnail)
 const banner = [
     {
         game: "Genshin Impact",
@@ -26,26 +25,43 @@ const banner = [
     }
 ];
 
-const herobg = document.getElementById("hero-bg");
+const heroSlider = document.getElementById("hero-slider");
 const gameTitle = document.getElementById("game-name");
 const bannerTitle = document.getElementById("banner");
 const carousel = document.getElementById("carousel");
+const heroContent = document.getElementById("hero-content");
 
 let currentindex = 0;
 let autoSlideTimer = null;
+
+// Fungsi merender gambar slide ke dalam kontainer horizontal
+function renderSlides() {
+    heroSlider.innerHTML = "";
+    banner.forEach((item) => {
+        const slide = document.createElement("div");
+        slide.className = "slide-item";
+        slide.style.backgroundImage = `url("${item.bgImage}")`;
+        heroSlider.appendChild(slide);
+    });
+}
 
 function gantibanner(index) {
     currentindex = index;
     const data = banner[index];
     if (!data) return;
 
-    // Perbaikan sintaks Template Literals JS untuk Background Image:
-    herobg.style.backgroundImage = `url("${data.bgImage}")`;
-    
-    gameTitle.innerText = data.game;
-    bannerTitle.innerHTML = data.title;
+    // 1. Geser background slider secara horizontal
+    heroSlider.style.transform = `translateX(-${index * 100}%)`;
 
-    // Tandai thumbnail aktif dengan border putih
+    // 2. Transisi teks masuk/keluar dengan mulus
+    heroContent.classList.add("text-out");
+    setTimeout(() => {
+        gameTitle.innerText = data.game;
+        bannerTitle.innerHTML = data.title;
+        heroContent.classList.remove("text-out");
+    }, 250);
+
+    // 3. Update border putih pada thumbnail aktif di bawah
     const allThumb = document.querySelectorAll(".thumb-item");
     allThumb.forEach((thumb, i) => {
         if (i === index) {
@@ -55,25 +71,26 @@ function gantibanner(index) {
         }
     });
 }
-//fungsinya untuk pindah ke gambar berikutnya
+
 function nextBanner() {
     let nextindex = (currentindex + 1) % banner.length;
     gantibanner(nextindex);
 }
-//untuk memulai berganti timer secara otomatis
+
 function startAutoSlide() {
-    stopAutoSlide();//agar saat pindah lama waktu tidak berantakan
-    autoSlideTimer = setInterval(nextBanner, 4000) //pindah setiap 4 detik
+    stopAutoSlide();
+    autoSlideTimer = setInterval(nextBanner, 4000); // Ganti setiap 4 detik
 }
 
 function stopAutoSlide() {
-    if(autoSlideTimer) {
+    if (autoSlideTimer) {
         clearInterval(autoSlideTimer);
     }
 }
 
-// Fungsi merender thumbnail secara dinamis
+// Fungsi merender thumbnail kecil di bawah
 function renderThumbnails() {
+    if (!carousel) return;
     carousel.innerHTML = ""; // Bersihkan kontainer
 
     banner.forEach((item, index) => {
@@ -81,6 +98,7 @@ function renderThumbnails() {
         thumbDiv.className = "thumb-item";
         thumbDiv.innerHTML = `<img src="${item.thumbImages}" class="thumb-img" alt="${item.game}" />`;
 
+        // Saat thumbnail diklik, pindah slide & reset timer
         thumbDiv.addEventListener("click", () => {
             gantibanner(index);
             startAutoSlide();
@@ -90,7 +108,8 @@ function renderThumbnails() {
     });
 }
 
-// Jalankan saat pertama kali halaman dimuat
+// Inisialisasi awal saat halaman dimuat
+renderSlides();
 renderThumbnails();
 gantibanner(0);
-startAutoSlide()
+startAutoSlide();

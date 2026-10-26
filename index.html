@@ -26,24 +26,34 @@
       </ul>
     </nav>
 
-    <!-- HERO SECTION (HERO BACKGROUND) -->
-    <section id="hero-bg" class="vh-100 w-100 position-relative d-flex align-items-center">
-      <!-- Konten Teks Kiri -->
-      <div class=" px-5 z-1">
-        <div class="row">
-          <div id="hero-content" class="col-md-6 col-lg-5 text-white">
-            <p id="game-name" class="fs-5 mb-1 text-info fw-semibold">Genshin Impact</p>
-            <h1 id="banner" class="display-5 fw-bold mb-4">
-              Latest updates on 7.0<br />"Everwinter Without Mercy"
-            </h1>
-            <button class="btn btn-dark rounded-pill px-5 py-2 fw-bold text-white border-white more">More</button>
-          </div>
-        </div>
-      </div>
+<!-- HERO SECTION -->
+<section id="hero-bg" class="vh-100 w-100 position-relative overflow-hidden d-flex align-items-center">
+  
+  <!-- Wrapper Background Gambar yang Bergeser Mulus -->
+  <div id="hero-slider"></div>
 
-      <!-- Container Thumbnail di Bawah Tengah -->
-      <div id="carousel" class="position-absolute bottom-0 start-50 translate-middle-x mb-4 d-flex gap-3 z-2"></div>
-    </section>
+  <!-- Lapisan Gelap Transparan di Atas Gambar -->
+  <div class="overlay-hero"></div>
+
+  <!-- Konten Teks Kiri (Kembali ke posisi semula di kiri) -->
+  <div class="px-5 z-1">
+    <div class="row">
+      <div id="hero-content" class="col-md-6 col-lg-5 text-white">
+        <p id="game-name" class="fs-5 mb-1 text-info fw-semibold">Genshin Impact</p>
+        <h1 id="banner" class="display-5 fw-bold mb-4">
+          Latest updates on 7.0<br />"Everwinter Without Mercy"
+        </h1>
+        <button class="btn btn-dark rounded-pill px-5 py-2 fw-bold text-white border-white more">More</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thumbnail Kecil Saja yang Dipindah ke Kanan Bawah (end-0) -->
+  <div id="carousel" class="position-absolute bottom-0 end-0 p-5 d-flex gap-3 z-2">
+    <!-- Thumbnail akan otomatis dirender oleh JavaScript di sini -->
+  </div>
+
+</section>
 
     <!-- LATEST UPDATES SECTION -->
     <section class="apalah py-5 my-5">
